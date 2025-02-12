@@ -2,6 +2,7 @@ package com.fiap.gerenciamento_clientes.application.ports.dto;
 
 import com.fiap.gerenciamento_clientes.application.controller.dto.output.ClienteOutput;
 import com.fiap.gerenciamento_clientes.domain.Cliente;
+import com.fiap.gerenciamento_clientes.domain.ports.dto.ClienteDatabaseDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,16 @@ public class ClienteDTO {
 
     public Cliente toDomain() {
         return Cliente.builder()
+                .id(this.id)
+                .nome(this.nome)
+                .email(this.email)
+                .telefone(this.telefone)
+                .endereco(this.endereco)
+                .build();
+    }
+
+    public ClienteDatabaseDTO toDatabaseDTO() {
+        return ClienteDatabaseDTO.builder()
                 .id(this.id)
                 .nome(this.nome)
                 .email(this.email)

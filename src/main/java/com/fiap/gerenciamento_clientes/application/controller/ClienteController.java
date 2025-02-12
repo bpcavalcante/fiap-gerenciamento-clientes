@@ -1,6 +1,7 @@
 package com.fiap.gerenciamento_clientes.application.controller;
 
-import com.fiap.gerenciamento_clientes.application.BuscarClienteUseCasePorts;
+import com.fiap.gerenciamento_clientes.application.ports.AtualizarClienteUseCasePorts;
+import com.fiap.gerenciamento_clientes.application.ports.BuscarClienteUseCasePorts;
 import com.fiap.gerenciamento_clientes.application.controller.dto.input.ClienteInput;
 import com.fiap.gerenciamento_clientes.application.controller.dto.output.ClienteOutput;
 import com.fiap.gerenciamento_clientes.application.ports.CadastrarClienteUseCasePorts;
@@ -17,6 +18,7 @@ public class ClienteController {
 
     private final CadastrarClienteUseCasePorts cadastrarClienteUseCasePorts;
     private final BuscarClienteUseCasePorts buscarClienteUseCasePorts;
+    private final AtualizarClienteUseCasePorts atualizarClienteUseCasePorts;
 
     @PostMapping
     public ResponseEntity<ClienteOutput> cadastrar(@RequestBody ClienteInput clienteInput) {
@@ -29,5 +31,12 @@ public class ClienteController {
         ClienteDTO clienteDTO = buscarClienteUseCasePorts.buscarCliente(id);
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(clienteDTO.toOutput());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteOutput> atualizarCliente(@PathVariable Long id, @RequestBody ClienteInput clienteInput) {
+        ClienteDTO clienteDTO = atualizarClienteUseCasePorts.atualizarCliente(id, clienteInput.clienteInputToDTO());
+        return  ResponseEntity.status(HttpStatusCode.valueOf(200)).body(clienteDTO.toOutput());
+    }
+
 
 }
