@@ -1,6 +1,7 @@
 package com.fiap.gerenciamento_clientes.config;
 
 import com.fiap.gerenciamento_clientes.domain.ports.ClienteRepositoryPort;
+import com.fiap.gerenciamento_clientes.domain.usecase.BuscarClienteUseCase;
 import com.fiap.gerenciamento_clientes.domain.usecase.CadastrarClienteUseCase;
 import com.fiap.gerenciamento_clientes.infraestructure.ClienteJpaRepository;
 import com.fiap.gerenciamento_clientes.infraestructure.implementations.ClienteSqlRepositoryImpl;
@@ -17,8 +18,15 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public BuscarClienteUseCase buscarClienteUseCase(ClienteRepositoryPort clienteRepositoryPort){
+        return new BuscarClienteUseCase(clienteRepositoryPort);
+    }
+
+    @Bean
     public ClienteSqlRepositoryImpl clienteSqlRepository(ClienteJpaRepository clienteJpaRepository) {
         return new ClienteSqlRepositoryImpl(clienteJpaRepository);
     }
+
+
 
 }

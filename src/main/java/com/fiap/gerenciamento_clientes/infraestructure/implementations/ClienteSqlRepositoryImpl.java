@@ -1,11 +1,14 @@
 package com.fiap.gerenciamento_clientes.infraestructure.implementations;
 
+import com.fiap.gerenciamento_clientes.domain.Cliente;
 import com.fiap.gerenciamento_clientes.domain.ports.ClienteRepositoryPort;
 import com.fiap.gerenciamento_clientes.domain.ports.dto.ClienteDatabaseDTO;
 import com.fiap.gerenciamento_clientes.infraestructure.ClienteJpaRepository;
 import com.fiap.gerenciamento_clientes.infraestructure.entities.ClienteEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class ClienteSqlRepositoryImpl implements ClienteRepositoryPort {
@@ -27,5 +30,10 @@ public class ClienteSqlRepositoryImpl implements ClienteRepositoryPort {
         } catch (DataAccessException e) {
             throw new RuntimeException("Erro ao inserir cliente", e);
         }
+    }
+
+    @Override
+    public Optional<Cliente> findById(Long id) {
+        return clienteJpaRepository.findById(id).map(ClienteEntity::toDomain);
     }
 }
