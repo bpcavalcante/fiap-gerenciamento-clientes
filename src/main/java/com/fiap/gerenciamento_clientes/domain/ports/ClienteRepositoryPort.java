@@ -9,4 +9,5 @@ public interface ClienteRepositoryPort {
     ClienteDatabaseDTO save(ClienteDatabaseDTO clienteDatabaseDTO);
     Optional<Cliente> findById(Long id);
     ClienteDatabaseDTO update(Long id, ClienteDatabaseDTO clienteDatabaseDTO);
+    void delete(Long id);
 }

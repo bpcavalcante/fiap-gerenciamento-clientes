@@ -6,6 +6,7 @@ import com.fiap.gerenciamento_clientes.application.controller.dto.input.ClienteI
 import com.fiap.gerenciamento_clientes.application.controller.dto.output.ClienteOutput;
 import com.fiap.gerenciamento_clientes.application.ports.CadastrarClienteUseCasePorts;
 import com.fiap.gerenciamento_clientes.application.ports.dto.ClienteDTO;
+import com.fiap.gerenciamento_clientes.domain.usecase.DeleteClienteUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class ClienteController {
     private final CadastrarClienteUseCasePorts cadastrarClienteUseCasePorts;
     private final BuscarClienteUseCasePorts buscarClienteUseCasePorts;
     private final AtualizarClienteUseCasePorts atualizarClienteUseCasePorts;
+    private final DeleteClienteUseCase deleteClienteUseCase;
 
     @PostMapping
     public ResponseEntity<ClienteOutput> cadastrar(@RequestBody ClienteInput clienteInput) {
@@ -35,7 +37,15 @@ public class ClienteController {
     @PutMapping("/{id}")
     public ResponseEntity<ClienteOutput> atualizarCliente(@PathVariable Long id, @RequestBody ClienteInput clienteInput) {
         ClienteDTO clienteDTO = atualizarClienteUseCasePorts.atualizarCliente(id, clienteInput.clienteInputToDTO());
-        return  ResponseEntity.status(HttpStatusCode.valueOf(200)).body(clienteDTO.toOutput());
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(clienteDTO.toOutput());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirCliente(@PathVariable Long id) {
+
+        deleteClienteUseCase.deletar(id);
+        return ResponseEntity.noContent().build();
+
     }
 
 
