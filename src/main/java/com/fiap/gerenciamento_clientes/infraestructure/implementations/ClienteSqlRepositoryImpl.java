@@ -56,4 +56,16 @@ public class ClienteSqlRepositoryImpl implements ClienteRepositoryPort {
             throw new RuntimeException("Erro ao atualizar cliente com ID " + id, e);
         }
     }
+
+    @Override
+    public void delete(Long id) {
+        try {
+            if (!clienteJpaRepository.existsById(id)) {
+                throw new RuntimeException("Cliente com ID " + id + " não encontrado.");
+            }
+            clienteJpaRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Erro ao deletar cliente com ID " + id, e);
+        }
+    }
 }
