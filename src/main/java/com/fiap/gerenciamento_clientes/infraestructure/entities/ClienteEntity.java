@@ -1,5 +1,6 @@
 package com.fiap.gerenciamento_clientes.infraestructure.entities;
 
+import com.fiap.gerenciamento_clientes.domain.Cliente;
 import com.fiap.gerenciamento_clientes.domain.ports.dto.ClienteDatabaseDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,16 @@ public class ClienteEntity {
 
     public ClienteDatabaseDTO toDatabaseDTO() {
         return ClienteDatabaseDTO.builder()
+                .id(this.id)
+                .nome(this.nome)
+                .email(this.email)
+                .telefone(this.telefone)
+                .endereco(this.endereco)
+                .build();
+    }
+
+    public Cliente toDomain() {
+        return Cliente.builder()
                 .id(this.id)
                 .nome(this.nome)
                 .email(this.email)
