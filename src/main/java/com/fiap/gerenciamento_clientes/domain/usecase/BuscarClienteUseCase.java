@@ -1,6 +1,6 @@
 package com.fiap.gerenciamento_clientes.domain.usecase;
 
-import com.fiap.gerenciamento_clientes.application.BuscarClienteUseCasePorts;
+import com.fiap.gerenciamento_clientes.application.ports.BuscarClienteUseCasePorts;
 import com.fiap.gerenciamento_clientes.application.ports.dto.ClienteDTO;
 import com.fiap.gerenciamento_clientes.domain.Cliente;
 import com.fiap.gerenciamento_clientes.domain.ports.ClienteRepositoryPort;

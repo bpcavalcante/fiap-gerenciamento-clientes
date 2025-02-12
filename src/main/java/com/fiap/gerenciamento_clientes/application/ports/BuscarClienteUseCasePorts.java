@@ -1,4 +1,4 @@
-package com.fiap.gerenciamento_clientes.application;
+package com.fiap.gerenciamento_clientes.application.ports;
 
 import com.fiap.gerenciamento_clientes.application.ports.dto.ClienteDTO;
 

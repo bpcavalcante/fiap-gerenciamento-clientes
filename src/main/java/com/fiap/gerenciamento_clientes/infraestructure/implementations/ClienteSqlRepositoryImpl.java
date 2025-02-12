@@ -36,4 +36,24 @@ public class ClienteSqlRepositoryImpl implements ClienteRepositoryPort {
     public Optional<Cliente> findById(Long id) {
         return clienteJpaRepository.findById(id).map(ClienteEntity::toDomain);
     }
+
+    @Override
+    public ClienteDatabaseDTO update(Long id, ClienteDatabaseDTO clienteDatabaseDTO) {
+        try {
+            Optional<ClienteEntity> optionalEntity = clienteJpaRepository.findById(id);
+            if (optionalEntity.isEmpty()) {
+                throw new RuntimeException("Cliente com ID " + id + " não encontrado.");
+            }
+
+            ClienteEntity entity = optionalEntity.get();
+            entity.setNome(clienteDatabaseDTO.getNome());
+            entity.setEmail(clienteDatabaseDTO.getEmail());
+            entity.setEndereco(clienteDatabaseDTO.getEndereco());
+            entity.setTelefone(clienteDatabaseDTO.getTelefone());
+
+            return clienteJpaRepository.save(entity).toDatabaseDTO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Erro ao atualizar cliente com ID " + id, e);
+        }
+    }
 }

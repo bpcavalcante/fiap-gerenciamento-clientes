@@ -23,4 +23,12 @@ public class ClienteInput {
                 .build();
     }
 
+    public ClienteDTO clienteInputToDTO() {
+        return ClienteDTO.builder()
+                .nome(this.nome)
+                .email(this.email)
+                .telefone(this.telefone)
+                .endereco(this.endereco)
+                .build();
+    }
 }
