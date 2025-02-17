@@ -3,13 +3,13 @@ package com.fiap.gerenciamento_clientes.application.ports.dto;
 import com.fiap.gerenciamento_clientes.application.controller.dto.output.ClienteOutput;
 import com.fiap.gerenciamento_clientes.domain.Cliente;
 import com.fiap.gerenciamento_clientes.domain.ports.dto.ClienteDatabaseDTO;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteDTO {
     private Long id;
     private String nome;
