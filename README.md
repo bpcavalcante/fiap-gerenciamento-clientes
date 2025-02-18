@@ -1,4 +1,4 @@
-# Tech Challenge Sistema de Gerenciamento de Pedidos
+# Tech Challenge Sistema de Gerenciamento de Pedidos (Gerenciamento de Clientes)
 
 ## Visão Geral
 
