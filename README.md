@@ -2,7 +2,16 @@
 
 ## Visão Geral
 
-Solução criada para cadastro e gestão de clientes. Este projeto está desenvolvido em Java 21 e segue a arquitetura Clean Architecture, utilizando Banco de Dados Relacional PostgreSQL.
+Descrição funcional: este serviço será responsável por todas as 
+operações relacionadas aos clientes, incluindo a criação, leitura, atualização e 
+exclusão de registros de clientes (CRUD).
+
+Tecnologias e abordagens:
+ - Java 21
+ - Spring Boot
+ - Spring Data JPA
+ - Arquitetura Clean Architecture
+ - Banco de Dados Relacional PostgreSQL
 
 ## Requisitos
 
